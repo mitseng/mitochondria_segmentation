@@ -22,7 +22,7 @@ class Mito_Dataset(data.Dataset):
         self.test_files = os.listdir(self.test_dir)
         self.train_files.sort()
         self.test_files.sort()
-        
+
         self.img_idx = -1
 
     def __len__(self):
