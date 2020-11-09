@@ -9,6 +9,7 @@ import os
 import cv2 as cv
 import numpy as np
 from torch.utils import data
+from patch_extraction import get_patch
 
 
 class Mito_Dataset(data.Dataset):
@@ -38,4 +39,5 @@ class Mito_Dataset(data.Dataset):
         patch_idx = index % 1152 // 6
         patch_x, patch_y = patch_idx // 16, patch_idx % 16
         augment = index % 1152 % 6
-        # TODO: extract image
+        return (get_patch(self.train_img, patch_x, patch_y, augment),
+                get_patch(self.test_img, patch_x, patch_y, augment))
