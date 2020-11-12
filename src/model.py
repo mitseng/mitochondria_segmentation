@@ -55,4 +55,21 @@ class U_Net(nn.Module):
     '''
     def __init__(self):
         super(U_Net, self).__init__()
+        self.conv1 = Double_Conv(1, 32)
+        self.pooling1 = nn.MaxPool2d(2, 2)
+        self.conv2 = Double_Conv(32, 64)
+        self.pooling2 = nn.MaxPool2d(2, 2)
+        self.conv3 = Double_Conv(64, 128)
+        self.pooling3 = nn.MaxPool2d(2, 2)
+        self.conv4 = Double_Conv(128, 256)
+
+        self.conv_trans1 = nn.ConvTranspose2d(256, 128, 2, 2)
+        self.conv5 = Double_Conv(256, 128)
+        self.conv_trans2 = nn.ConvTranspose2d(128, 64)
+        self.conv6 = Double_Conv(128, 64)
+        self.conv_trans3 = nn.ConvTranspose2d(64, 32)
+        self.conv7 = Double_Conv(64, 32)
+        self.out = nn.Conv2d(32, 2, 1)
+
+    def forward(self, x):
         # TODO
