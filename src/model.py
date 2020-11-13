@@ -6,6 +6,7 @@ Created on Mon Nov  9 23:11:23 2020
 """
 
 
+import torch
 import torch.nn as nn
 
 
@@ -65,11 +66,40 @@ class U_Net(nn.Module):
 
         self.conv_trans1 = nn.ConvTranspose2d(256, 128, 2, 2)
         self.conv5 = Double_Conv(256, 128)
-        self.conv_trans2 = nn.ConvTranspose2d(128, 64)
+        self.conv_trans2 = nn.ConvTranspose2d(128, 64, 2, 2)
         self.conv6 = Double_Conv(128, 64)
-        self.conv_trans3 = nn.ConvTranspose2d(64, 32)
+        self.conv_trans3 = nn.ConvTranspose2d(64, 32, 2, 2)
         self.conv7 = Double_Conv(64, 32)
         self.out = nn.Conv2d(32, 2, 1)
 
     def forward(self, x):
-        # TODO
+        # suppose x is 1 * 256 * 256
+        # down
+        x1 = self.conv1(x)      # 32 * 256 * 256
+        x = self.pooling1(x1)   # 32 * 128 * 128
+        x2 = self.conv2(x)      # 64 * 128 * 128
+        x = self.pooling2(x2)   # 64 * 64 * 64
+        x3 = self.conv3(x)      # 128 * 64 * 64
+        x = self.pooling3(x3)   # 128 * 32 * 32
+        x = self.conv4(x)      # 256 * 32 * 32
+        # up
+        x = self.conv_trans1(x)         # 128 * 64 * 64
+        x = torch.cat((x, x3), dim=1)   # 256 * 64 * 64
+        x = self.conv5(x)
+        x = self.conv_trans2(x)
+        x = torch.cat((x, x2), dim=1)
+        x = self.conv6(x)
+        x = self.conv_trans3(x)
+        x = torch.cat((x, x1), dim=1)
+        x = self.conv7(x)
+        x = self.out(x)
+        return x
+
+
+if __name__ == "__main__":
+    device = torch.device('cpu')
+    x = torch.rand((1, 1, 256, 256), device=device)
+    print("x size: {}".format(x.size()))
+    model = U_Net().to(device)
+    out = model(x)
+    print("out size:", out.shape)
