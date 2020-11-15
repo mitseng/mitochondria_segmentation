@@ -33,11 +33,11 @@ class Mito_Dataset(data.Dataset):
         if index // 1152 != self.img_idx:
             self.img_idx = index // 1152
             self.train_img = cv.imread(self.train_dir + self.train_files[self.img_idx],
-                                  cv.IMREAD_GRAYSCALE)
+                                       cv.IMREAD_GRAYSCALE)
             self.test_img = cv.imread(self.test_dir + self.test_files[self.img_idx],
-                                 cv.IMREAD_GRAYSCALE)
+                                      cv.IMREAD_GRAYSCALE)
         patch_idx = index % 1152 // 6
         patch_x, patch_y = patch_idx // 16, patch_idx % 16
         augment = index % 1152 % 6
-        return (get_patch(self.train_img, patch_x, patch_y, augment),
-                get_patch(self.test_img, patch_x, patch_y, augment))
+        return (get_patch(self.train_img, patch_x, patch_y, augment).reshape((1, 1, 64, 64)),
+                get_patch(self.test_img, patch_x, patch_y, augment).reshape((1, 1, 64, 64)))
