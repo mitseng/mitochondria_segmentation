@@ -39,5 +39,9 @@ class Mito_Dataset(data.Dataset):
         patch_idx = index % 1152 // 6
         patch_x, patch_y = patch_idx // 16, patch_idx % 16
         augment = index % 1152 % 6
-        return (get_patch(self.train_img, patch_x, patch_y, augment).reshape((1, 1, 64, 64)),
-                get_patch(self.test_img, patch_x, patch_y, augment).reshape((1, 1, 64, 64)))
+        inputs = get_patch(self.train_img, patch_x, patch_y, augment).reshape((1, 64, 64))
+        targets = get_patch(self.test_img, patch_x, patch_y, augment).reshape((1, 64, 64))
+        # inputs = np.float64(inputs)
+        inputs = inputs / 255
+        targets = targets / 255
+        return (inputs.copy(), targets.copy())

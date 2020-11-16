@@ -23,7 +23,7 @@ pre_epoch = 0
 # pretrained model parameter
 pretrained = ''
 # batch size
-batch_size = 1
+batch_size = 32
 # **********************************
 
 
@@ -53,17 +53,18 @@ optimizer = torch.optim.SGD(model.parameters(), lr=0.0001, momentum=0.9)
 for epoch in range(pre_epoch, pre_epoch + EPOCHES):
     start_time = time()
     running_loss = 0.0
-    for i, data in enumerate(data_loader, 0):
+    for i, data in enumerate(data_loader):
         # get input
         inputs, lables = data
-        imputs = torch.tensor(inputs, dtype=torch.float64)
+        inputs = torch.tensor(inputs, dtype=torch.float32)
         lables = torch.tensor(lables, dtype=torch.long)
+        lables = lables.squeeze(1)
         # copy data to GPU
         inputs, lables = inputs.to(device), lables.to(device)
         # set gradiant 0
         optimizer.zero_grad()
-
         # forwarding
+        
         outputs = model(inputs)
         # compute loss
         loss = criterion(outputs, lables)
@@ -71,7 +72,6 @@ for epoch in range(pre_epoch, pre_epoch + EPOCHES):
         loss.backward()
         # optimizing
         optimizer.step()
-
         # print states info
         running_loss += loss.item() * batch_size
     # print epoch loss and time
