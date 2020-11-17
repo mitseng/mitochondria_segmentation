@@ -15,7 +15,7 @@ from time import time
 
 # ******** Hyper Parameters ********
 # epoches till stop
-EPOCHES = 100
+EPOCHES = 1000
 # if there is pretrained parameters
 PRETRAIN = False
 # epoches trained
@@ -23,7 +23,7 @@ pre_epoch = 0
 # pretrained model parameter
 pretrained = ''
 # batch size
-batch_size = 32
+batch_size = 16
 # **********************************
 
 
@@ -50,7 +50,7 @@ optimizer = torch.optim.SGD(model.parameters(), lr=0.0001, momentum=0.9)
 # training
 
 # training
-for epoch in range(pre_epoch, pre_epoch + EPOCHES):
+for epoch in range(pre_epoch + 1, pre_epoch + 1 + EPOCHES):
     start_time = time()
     running_loss = 0.0
     for i, data in enumerate(data_loader):
@@ -76,7 +76,7 @@ for epoch in range(pre_epoch, pre_epoch + EPOCHES):
         running_loss += loss.item() * batch_size
     # print epoch loss and time
     print('[%d, loss: %.6f]' % (epoch, running_loss / dataset.len))
-    print((time() - start_time) // 60, 'minutes per epoche.')
+    print((time() - start_time) // 60, 'minutes per epoch.')
     # save model every epoch every 10 epoch
     if epoch % 10 == 0:
-        torch.save(model.state_dict(), 'param'+str(epoch)+'.pkl')
+        torch.save(model.state_dict(), './param_16/param'+str(epoch)+'.pkl')
