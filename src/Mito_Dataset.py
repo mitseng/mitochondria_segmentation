@@ -7,7 +7,6 @@ Created on Sat Oct 31 22:15:22 2020
 
 import os
 import cv2 as cv
-import numpy as np
 from torch.utils import data
 from patch_extraction import get_patch
 

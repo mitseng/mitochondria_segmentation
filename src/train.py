@@ -17,11 +17,11 @@ from time import time
 # epoches till stop
 EPOCHES = 1000
 # if there is pretrained parameters
-PRETRAIN = False
+PRETRAIN = True
 # epoches trained
-pre_epoch = 0
+pre_epoch = 190
 # pretrained model parameter
-pretrained = ''
+pretrained = './param_16/param190.pkl'
 # batch size
 batch_size = 16
 # **********************************
@@ -64,7 +64,6 @@ for epoch in range(pre_epoch + 1, pre_epoch + 1 + EPOCHES):
         # set gradiant 0
         optimizer.zero_grad()
         # forwarding
-        
         outputs = model(inputs)
         # compute loss
         loss = criterion(outputs, lables)
