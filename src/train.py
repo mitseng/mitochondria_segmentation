@@ -19,9 +19,11 @@ EPOCHES = 1000
 # if there is pretrained parameters
 PRETRAIN = True
 # epoches trained
-pre_epoch = 190
+pre_epoch = 430
+# path to save parameter file
+save_path = './param_16/'
 # pretrained model parameter
-pretrained = './param_16/param190.pkl'
+pretrained = save_path + 'param430.pkl'
 # batch size
 batch_size = 16
 # **********************************
@@ -78,4 +80,4 @@ for epoch in range(pre_epoch + 1, pre_epoch + 1 + EPOCHES):
     print((time() - start_time) // 60, 'minutes per epoch.')
     # save model every epoch every 10 epoch
     if epoch % 10 == 0:
-        torch.save(model.state_dict(), './param_16/param'+str(epoch)+'.pkl')
+        torch.save(model.state_dict(), save_path + 'param'+str(epoch)+'.pkl')
