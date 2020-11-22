@@ -31,7 +31,7 @@ def seg_img(img_file, model, device):
 
 
 if __name__ == '__main__':
-    model_path = './param_16/param430.pkl'
+    model_path = './param_16/param270.pkl'
     out_path = '../pred_4/'
     img_path = '../../mito_imgs/images/'
     device = 'cuda:0'
