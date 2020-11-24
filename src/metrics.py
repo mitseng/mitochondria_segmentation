@@ -58,7 +58,7 @@ def metrics(pred, lable):
     rc = TP / (TP + FN + smooth)                    # recall
     f1 = 2 * sn * rc / (sn + rc + smooth)           # F1 mesure
     jac = TP / (TP + FN + FP + smooth)              # jaccard coefficient
-    dice = 2 * TP / (2 * TP + FP + FN)
+    dice = 2 * TP / (2 * TP + FP + FN + smooth)
 
     # return metrics as dictionary
     met_dict['TP'] = TP
