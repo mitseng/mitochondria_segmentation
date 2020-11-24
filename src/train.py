@@ -17,15 +17,15 @@ from time import time
 # epoches till stop
 EPOCHES = 1000
 # if there is pretrained parameters
-PRETRAIN = True
+PRETRAIN = False
 # epoches trained
-pre_epoch = 430
+pre_epoch = 0
 # path to save parameter file
-save_path = './param_16/'
+save_path = './param_32/'
 # pretrained model parameter
-pretrained = save_path + 'param430.pkl'
+pretrained = save_path + 'param.pkl'
 # batch size
-batch_size = 16
+batch_size = 32
 # **********************************
 
 
@@ -48,8 +48,6 @@ criterion = torch.nn.CrossEntropyLoss().cuda()
 # optimizer
 optimizer = torch.optim.SGD(model.parameters(), lr=0.0001, momentum=0.9)
 
-
-# training
 
 # training
 for epoch in range(pre_epoch + 1, pre_epoch + 1 + EPOCHES):

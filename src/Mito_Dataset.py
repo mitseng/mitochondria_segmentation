@@ -13,13 +13,13 @@ from patch_extraction import get_patch
 
 class Mito_Dataset(data.Dataset):
     def __init__(self):
-        self.train_imgs = 100
+        self.train_imgs = 126
         self.patch_size = (64, 64)
-        self.len = (768 // 64) * (1024 // 64) * 6 * 100  # 115200
-        self.train_dir = '../../mito_imgs/images/'
-        self.test_dir = '../../mito_imgs/annotations/'
-        self.train_files = os.listdir(self.train_dir)
-        self.test_files = os.listdir(self.test_dir)
+        self.len = (768 // 64) * (1024 // 64) * 6 * 126  # 145152
+        self.train_dir = '../../mito_imgs/train/images/'
+        self.test_dir = '../../mito_imgs/train/annotations/'
+        self.train_files = sorted(os.listdir(self.train_dir))
+        self.test_files = sorted(os.listdir(self.test_dir))
         self.train_files.sort()
         self.test_files.sort()
 

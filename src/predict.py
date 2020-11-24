@@ -31,9 +31,9 @@ def seg_img(img_file, model, device):
 
 
 if __name__ == '__main__':
-    model_path = './param_16/param270.pkl'
-    out_path = '../pred_4/'
-    img_path = '../../mito_imgs/images/'
+    model_path = './param_32/param420.pkl'
+    out_path = '../pred_5/'
+    img_path = '../../mito_imgs/test/images/'
     device = 'cuda:0'
     img_files = sorted(os.listdir(img_path))[100:]
     unet = U_Net()

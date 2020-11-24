@@ -20,7 +20,7 @@ def get_imgarr(img_files):
 
 
 predict_path = '../pred_4/'
-lable_path = '../../mito_imgs/annotations/'
+lable_path = '../../mito_imgs/test/annotations/'
 
 predict_files = sorted(os.listdir(predict_path))
 predict_files = [predict_path + f for f in predict_files]
