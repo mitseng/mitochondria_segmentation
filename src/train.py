@@ -17,15 +17,15 @@ from time import time
 # epoches till stop
 EPOCHES = 1000
 # if there is pretrained parameters
-PRETRAIN = False
+PRETRAIN = True
 # epoches trained
-pre_epoch = 0
+pre_epoch = 270
 # path to save parameter file
-save_path = './param_32/'
+save_path = './param_64/'
 # pretrained model parameter
-pretrained = save_path + 'param.pkl'
+pretrained = save_path + 'param270.pkl'
 # batch size
-batch_size = 32
+batch_size = 64
 # **********************************
 
 
@@ -40,11 +40,11 @@ print('device:', device)
 # new and init model
 model = U_Net()
 if PRETRAIN:
-    model.load_state_dict(torch.load(pretrained))
+    model.load_state_dict(torch.load(pretrained, map_location=device))
 model.to(device)  # copy model to GPU
 
 # loss function
-criterion = torch.nn.CrossEntropyLoss().cuda()
+criterion = torch.nn.CrossEntropyLoss().to(device)
 # optimizer
 optimizer = torch.optim.SGD(model.parameters(), lr=0.0001, momentum=0.9)
 

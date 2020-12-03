@@ -31,11 +31,11 @@ def seg_img(img_file, model, device):
 
 
 if __name__ == '__main__':
-    model_path = './param_32/param420.pkl'
+    model_path = './param_32/param480.pkl'
     out_path = '../pred_5/'
     img_path = '../../mito_imgs/test/images/'
     device = 'cuda:0'
-    img_files = sorted(os.listdir(img_path))[100:]
+    img_files = sorted(os.listdir(img_path))
     unet = U_Net()
     unet.eval()
     unet.load_state_dict(torch.load(model_path,
