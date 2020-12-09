@@ -17,15 +17,15 @@ from time import time
 # epoches till stop
 EPOCHES = 1000
 # if there is pretrained parameters
-PRETRAIN = True
+PRETRAIN = False
 # epoches trained
-pre_epoch = 270
+pre_epoch = 0
 # path to save parameter file
-save_path = './param_64/'
+save_path = './param_128/'
 # pretrained model parameter
-pretrained = save_path + 'param270.pkl'
+pretrained = save_path + 'param.pkl'
 # batch size
-batch_size = 64
+batch_size = 128
 # **********************************
 
 

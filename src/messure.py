@@ -19,7 +19,7 @@ def get_imgarr(img_files):
     return np.uint8(imgarr)
 
 
-predict_path = '../pred_5/'
+predict_path = '../pred_6/'
 lable_path = '../../mito_imgs/test/annotations/'
 
 predict_files = sorted(os.listdir(predict_path))
