@@ -31,7 +31,7 @@ def seg_img(img_file, model, device):
 
 
 if __name__ == '__main__':
-    model_path = './param_64/param550.pkl'
+    model_path = './param_64/param500.pkl'
     out_path = '../pred_6/'
     img_path = '../../mito_imgs/test/images/'
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
