@@ -21,11 +21,11 @@ PRETRAIN = True
 # epoches trained
 pre_epoch = 450
 # path to save parameter file
-save_path = './param_128/'
+save_path = './param_64/'
 # pretrained model parameter
 pretrained = save_path + 'param450.pkl'
 # batch size
-batch_size = 128
+batch_size = 64
 # **********************************
 
 
