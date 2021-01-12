@@ -21,6 +21,8 @@ Training is performed on Google Colaboratory. Batch size is fixed at 64, after a
 
 ## Result
 
+Thresholded output of the model is in [pred_6](./pred_6), I deployed post processing on that output, and the result is in [rst](./rst)
+
 I assume mitochondria as positive, and other area is negative. Below is probably the best result I did.
 
 | Accuracy | Specificity | Dice   | IOU    |
